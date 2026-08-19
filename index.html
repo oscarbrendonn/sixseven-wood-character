@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>67 Wood Character</title>
+<script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.4.0/model-viewer.min.js"></script>
+<style>
+  html,body{margin:0;height:100%;background:#f2efe9;font-family:-apple-system,system-ui,sans-serif}
+  model-viewer{width:100%;height:92%}
+  .bar{height:8%;display:flex;align-items:center;justify-content:center;gap:12px}
+  button{border:1px solid #999;background:#fff;border-radius:8px;padding:8px 18px;font-size:15px}
+  button.on{background:#333;color:#fff}
+</style>
+</head>
+<body>
+<model-viewer id="mv" src="model_8k.glb" camera-controls auto-rotate shadow-intensity="0.6"
+  exposure="0.9" interaction-prompt="none"></model-viewer>
+<div class="bar">
+  <button id="b8" class="on">8K</button>
+  <button id="b4">4K</button>
+</div>
+<script>
+const mv=document.getElementById('mv'), b8=document.getElementById('b8'), b4=document.getElementById('b4');
+b8.onclick=()=>{mv.src='model_8k.glb'; b8.className='on'; b4.className='';};
+b4.onclick=()=>{mv.src='model_4k.glb'; b4.className='on'; b8.className='';};
+</script>
+</body>
+</html>
