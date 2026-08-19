@@ -4,7 +4,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>67 Wood Character</title>
-<script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.4.0/model-viewer.min.js"></script>
+<script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.4.0/model-viewer.min.js">
+mv.addEventListener('progress', e=>{ document.getElementById('pb').style.width=(e.detail.totalProgress*100)+'%'; });
+</script>
 <style>
   html,body{margin:0;height:100%;background:#f2efe9;font-family:-apple-system,system-ui,sans-serif}
   model-viewer{width:100%;height:92%}
@@ -14,16 +16,21 @@
 </style>
 </head>
 <body>
-<model-viewer id="mv" src="model_8k.glb" camera-controls auto-rotate shadow-intensity="0.6"
-  exposure="0.9" interaction-prompt="none"></model-viewer>
+<model-viewer id="mv" src="model_8k_w.glb" loading="eager" reveal="auto" camera-controls auto-rotate shadow-intensity="0.6"
+  exposure="0.9" interaction-prompt="none">  <div slot="progress-bar" style="position:absolute;left:10%;right:10%;top:50%;height:6px;background:#ddd;border-radius:3px">
+    <div id="pb" style="height:100%;width:0%;background:#8a6f4d;border-radius:3px"></div>
+  </div>
+</model-viewer>
 <div class="bar">
   <button id="b8" class="on">8K</button>
   <button id="b4">4K</button>
 </div>
 <script>
 const mv=document.getElementById('mv'), b8=document.getElementById('b8'), b4=document.getElementById('b4');
-b8.onclick=()=>{mv.src='model_8k.glb'; b8.className='on'; b4.className='';};
-b4.onclick=()=>{mv.src='model_4k.glb'; b4.className='on'; b8.className='';};
+b8.onclick=()=>{mv.src='model_8k_w.glb'; b8.className='on'; b4.className='';};
+b4.onclick=()=>{mv.src='model_4k_w.glb'; b4.className='on'; b8.className='';};
+
+mv.addEventListener('progress', e=>{ document.getElementById('pb').style.width=(e.detail.totalProgress*100)+'%'; });
 </script>
 </body>
 </html>
